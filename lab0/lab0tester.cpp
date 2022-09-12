@@ -21,7 +21,9 @@ int main(void){
                                             };
     bool hasBug=false;
     for(unsigned int i=0;i<20;i++){
+
         unsigned long long rc=factorial(i);
+        
         if(rc !=correctFactorial[i]){
             cout << "Error: factorial (" << i << ") = " << correctFactorial[i] << endl;
             cout << "Your function returned: " << rc << endl;
