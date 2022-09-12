@@ -21,4 +21,5 @@ $$\={n(n+1)\over 2}$$
 
 ## Graph
 
-Put your graph here
+Graph won't load...
+
