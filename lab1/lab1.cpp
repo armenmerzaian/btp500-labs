@@ -2,8 +2,8 @@
 /*                                                */
 /*  Lab 1 Starter file                            */
 /*                                                */
-/*  Name:                                         */
-/*  Student number:                               */
+/*  Name: Armen Merzaian                          */
+/*  Student number:   060207024                   */
 /*                                                */
 /**************************************************/
 
