@@ -27,5 +27,16 @@ unsigned long long power (unsigned int base, unsigned int exp){
 }
 
 unsigned long long fibonacci (unsigned int n){
-    return 0;
+   
+    unsigned long long fib_0 = 0.0;
+    unsigned long long fib_1 = 1.0;
+    unsigned long long fib_n = 0.0;
+    if (n == 1) fib_n = 1.0;
+    
+    for (unsigned int i = 1; i < n; i++){
+        fib_n = fib_0 + fib_1;
+        fib_0 = fib_1;
+        fib_1 = fib_n;
+    }
+    return fib_n;
 }
