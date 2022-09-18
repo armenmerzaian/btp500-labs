@@ -18,8 +18,12 @@ unsigned long long factorial (unsigned int n){
     return factorial;
 }
 
-unsigned long long power (unsigned int base, unsigned int n){
-    return 0;
+unsigned long long power (unsigned int base, unsigned int exp){
+    unsigned long long result = 1;
+    for (int i = 0; i < exp; i++){
+        result *= base;
+    }
+    return result;
 }
 
 unsigned long long fibonacci (unsigned int n){
