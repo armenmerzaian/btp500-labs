@@ -54,15 +54,53 @@ unsigned long long fibonacci (unsigned int n){
     return fibonacci(n - 1) + fibonacci(n - 2); 
 }
 ```
-1. Did you find it easier to write the recursive fibonacii() function or the iterative version?
-  1. **Without performing a full analysis**
-      * there is no right or wrong to this question ... just give it your honest best guess.  Its a hypothesis... **don't google for the answer**.  This is a hypothesis.  You do this then see if your observations support what you think.  Its ok to be wrong.
-      * what do you think the runtime of your recursive fibonacci function is (stated with big-O notation)? 
+1. Did you find it easier to write the recursive fibonacci() function or the iterative version?
+   
+   I found writing the recursive fibonacci method much easier to write than the iterative one. This is becuase naturally when I calculate fibonacci by hand
+   I follow a recursive pattern, rather than an iterative one. Therefore translating my own familiar steps to code is much easier than wrapping my head         around an interative algorithm. 
+      
+2. What do you think the runtime of your recursive fibonacci function is (stated with big-O notation)?
       * Explain why you think this.
-  2. Modify the file lab2timing.cpp to get a timing of running the fibonacci function. Record the time needed to run fib for n ranging from 21 to 45 inclusive (timing results for values smaller than 21 are pretty small but feel free to run and include them if you want).  Feel free to modify lab2timing.cpp however you want to get the data you need.
-  3. Take the data you generated and create a line graph using a spreadsheet program such as google spreadsheet or excel.  The line graph should be organized as follows:
-     * x axis represents n
-     * y axis represents time
-     * provide clear labeling and titles
-     * place the image of the graph into your lab2.md file as part of your answer.  The easiest way to do this is to plot the graph using google spreadsheet and then use the built in sharing function and embedding functionality to create a link to the image for your lab2.md.  However, there are other ways and you are free to use whatever method you want as long as there is an image of the graph in your lab2.md.
-  4. Given the timing, and your original guess, does the run time fit your original hypothesis?
+   I think the runtime for the recursive fibonacci is will be \$ T(n) = O(2^n)$ Exponential Complexity. This is becuase just by reading the code, I can           deduct that for every recursive call, the function will call two additional, and so on until n is reached with exponential growth.
+
+3. Record the time needed to run fib for n ranging from 21 to 45 inclusive.
+
+| n           | T(f(n)      |
+| ----------- | ----------- |
+|   21	      | 0.0000907   |
+| 22 | 0.0001166 |
+| 23 | 0.0003509 |
+| 24 | 0.0004051 |
+| 25 | 0.0007179 |
+| 26 | 0.0008317 |
+| 27 | 0.0018291 |
+| 28 | 0.0023027 |
+| 29 | 0.0041103 |
+| 30 | 0.005339  |
+| 31 | 0.0088621 |
+| 32 | 0.0182402 |
+| 33 | 0.0225901 |
+| 34 | 0.0387604 |
+| 35 | 0.0593763 |
+| 36 | 0.0969567 |
+| 37 | 0.155563  |
+| 38 | 0.256818  |
+| 39 | 0.403557  |
+| 40 | 0.779868  |
+| 41 | 1.09239   |
+| 42 | 1.83036   |
+| 43 | 2.91988   |
+| 44 | 4.64459   |
+| 45 | 8.16999   |
+
+
+
+3. Generate a graph based on the data
+
+![](https://docs.google.com/spreadsheets/d/e/2PACX-1vQXoqqvz9tdY-k8Zm0262vxbl7K0hvESwWwmWKMKULlEvoZpYJ_m0p35Yr6VaqxBEWuFHyuUEM1SX41/pubchart?oid=1708603981&format=image)
+
+
+4. Given the timing, and your original guess, does the run time fit your original hypothesis?
+   
+   Yes, the runtime data does fit my original hypothesis. The data & graph confirm that the complexity of the recursive Fibonacci function is exponential. 
+    $\therefore T(n) = O(2^n)$
