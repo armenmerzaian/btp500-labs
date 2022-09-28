@@ -11,17 +11,14 @@
 
 unsigned long long factorial (unsigned int n){
     if(n <= 0) return 1;
-    unsigned long long val = n * factorial(n - 1);
-    return val;
+    return n * factorial(n - 1);
 }
 
 unsigned long long power (unsigned int base, unsigned int n){
     if(n <= 0) return 1;
-    unsigned long long val = base * power(base, n - 1);   
-    return val;
+    return base * power(base, n - 1);
 }
 unsigned long long fibonacci (unsigned int n){
     if(n <= 1) return n;
-    unsigned long long val = fibonacci(n - 1) + fibonacci(n - 2);
-    return val; 
+    return fibonacci(n - 1) + fibonacci(n - 2); 
 }
