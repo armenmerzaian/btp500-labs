@@ -42,7 +42,7 @@ public:
 		}
 		const_iterator operator++(int){
 			const_iterator old = *this;
-			curr_ = curr->next;
+			curr_ = curr_->next_;
 			return old;
 		}
 		const_iterator& operator--(){
@@ -54,21 +54,22 @@ public:
 			{
 				if (myList_)
 				{
-					curr_ = myList->back_;
+					curr_ = myList_->back_;
 				}
 			}
+			return *this;
 		}
 		const_iterator operator--(int){
-			Node *old = *this;
+			const_iterator old = *this;
 			if (curr_)
 			{
-				curr_ = curr +->prev_;
+				curr_ = curr_->prev_;
 			}
 			else
 			{
 				if (myList_)
 				{
-					curr_ = myList->back_;
+					curr_ = myList_->back_;
 				}
 			}
 			return old;
@@ -89,11 +90,6 @@ public:
 		}
 	};
 	class iterator:public const_iterator{
-	private:
-		iterator(Node* curr, DList *theList){
-			this->curr_ = curr;
-			this->myList_ = theList;
-		}
 	public:
 		iterator(){
 			this->myList_ = nullptr;
@@ -101,10 +97,11 @@ public:
 		}
 		iterator& operator++(){
 			this->curr_ = this->curr_->next_;
+			return *this;
 		}
 		iterator operator++(int){
 			iterator old = *this;
-			this->curr_ = this->curr_->next;
+			this->curr_ = this->curr_->next_;
 			return old;
 		}
 		iterator& operator--(){
@@ -114,14 +111,15 @@ public:
 			}
 			else
 			{
-				if (myList_)
+				if (this->myList_)
 				{
-					this->curr_ = this->myList->back_;
+					this->curr_ = this->myList_->back_;
 				}
 			}
+			return *this;
 		}
 		iterator operator--(int){
-			Node *old = *this;
+			iterator old = *this;
 			if (this->curr_)
 			{
 				this->curr_ = this->curr_->prev_;
@@ -130,7 +128,7 @@ public:
 			{
 				if (this->myList_)
 				{
-					this->curr_ = this->myList->back_;
+					this->curr_ = this->myList_->back_;
 				}
 			}
 			return old;
@@ -145,16 +143,16 @@ public:
 	};
 
 	const_iterator cbegin() const{
-		return const_iterator(front_, this);
+		return const_iterator();
 	}
 	iterator begin(){
-		return iterator(front_, this);
+		return iterator();
 	}
 	const_iterator cend() const{
-		return const_iterator(nullptr, this);
+		return const_iterator();
 	}
 	iterator end(){
-		return iterator(nullptr, this);
+		return iterator();
 	}
 };
 
@@ -233,7 +231,7 @@ public:
 		}
 		const_iterator operator++(int){
 			const_iterator old = *this;
-			curr_ = curr->next;
+			curr_ = curr_->next_;
 			return old;
 		}
 		const_iterator& operator--(){
@@ -245,21 +243,22 @@ public:
 			{
 				if (myList_)
 				{
-					curr_ = myList->back_;
+					curr_ = myList_->back_;
 				}
 			}
+			return *this;
 		}
 		const_iterator operator--(int){
-			Node *old = *this;
+			const_iterator old = *this;
 			if (curr_)
 			{
-				curr_ = curr +->prev_;
+				curr_ = curr_->prev_;
 			}
 			else
 			{
 				if (myList_)
 				{
-					curr_ = myList->back_;
+					curr_ = myList_->back_;
 				}
 			}
 			return old;
@@ -280,13 +279,6 @@ public:
 		}
 	};
 	class iterator:public const_iterator{
-	private:
-		iterator(Node *curr, Sentinel *theList)
-		{
-			this->curr_ = curr;
-			this->myList_ = theList;
-		}
-
 	public:
 		iterator(){
 			this->myList_ = nullptr;
@@ -294,10 +286,11 @@ public:
 		}
 		iterator& operator++(){
 			this->curr_ = this->curr_->next_;
+			return *this;
 		}
 		iterator operator++(int){
 			iterator old = *this;
-			this->curr_ = this->curr_->next;
+			this->curr_ = this->curr_->next_;
 			return old;
 		}
 		iterator& operator--(){
@@ -307,14 +300,15 @@ public:
 			}
 			else
 			{
-				if (myList_)
+				if (this->myList_)
 				{
-					this->curr_ = this->myList->back_;
+					this->curr_ = this->myList_->back_;
 				}
 			}
+			return *this;
 		}
 		iterator operator--(int){
-			Node *old = *this;
+			iterator old = *this;
 			if (this->curr_)
 			{
 				this->curr_ = this->curr_->prev_;
@@ -323,7 +317,7 @@ public:
 			{
 				if (this->myList_)
 				{
-					this->curr_ = this->myList->back_;
+					this->curr_ = this->myList_->back_;
 				}
 			}
 			return old;
@@ -336,17 +330,17 @@ public:
 		}
 	};
 	const_iterator cbegin() const{
-		return const_iterator(front_, this);
+		return const_iterator();
 	}
 	iterator begin(){
-		return iterator(front_, this);
+		return iterator();
 	}
 	const_iterator cend() const{
-		return const_iterator(nullptr, this);
+		return const_iterator();
 	}
 
 	iterator end(){
-		return iterator(nullptr, this);
+		return iterator();
 	}
 };
 
