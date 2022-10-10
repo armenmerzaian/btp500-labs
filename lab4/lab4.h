@@ -25,16 +25,15 @@ public:
 	class const_iterator{
 		friend class DList;
 	protected:
-		const DList *myList_;
+		const DList *myList = nullptr;
 		Node* curr_;
-		const_iterator(Node* n, const DList *theList){
+		const_iterator(Node* n, const DList* dlist){
 			curr_=n;
-			myList_ = theList;
+			myList = dlist;
 		}
 	public:
 		const_iterator(){
 			curr_=nullptr;
-			myList_ = nullptr;
 		}
 		const_iterator& operator++(){
 			curr_ = curr_->next_;
@@ -49,13 +48,8 @@ public:
 			if (curr_)
 			{
 				curr_ = curr_->prev_;
-			}
-			else
-			{
-				if (myList_)
-				{
-					curr_ = myList_->back_;
-				}
+			} else {
+				curr_ = myList->back_;
 			}
 			return *this;
 		}
@@ -64,37 +58,36 @@ public:
 			if (curr_)
 			{
 				curr_ = curr_->prev_;
-			}
-			else
-			{
-				if (myList_)
-				{
-					curr_ = myList_->back_;
-				}
+			} else {
+				curr_ = myList->back_;
 			}
 			return old;
 		}
 		bool operator==(const_iterator rhs){
 			bool compares = false;
-			if (myList_ == rhs.myList_ && curr_ == rhs.curr_)
+			if (curr_ == rhs.curr_)
 			{
 				compares = true;
 			}
 			return compares;
 		}
 		bool operator!=(const_iterator rhs){
-			return !(*this == rhs);
+			bool compares = false;
+			if(curr_ != rhs.curr_){
+				compares = true;
+			}
+			return compares;
+			//return !(*this == rhs);
 		}
 		const T& operator*()const{
 			return curr_->data_;
 		}
 	};
 	class iterator:public const_iterator{
+	friend class DList;
+	iterator(Node* curr, DList* dlist) : const_iterator(curr, dlist){}
 	public:
-		iterator(){
-			this->myList_ = nullptr;
-			this->curr_ = nullptr;
-		}
+		iterator() : const_iterator(){}
 		iterator& operator++(){
 			this->curr_ = this->curr_->next_;
 			return *this;
@@ -108,13 +101,8 @@ public:
 			if (this->curr_)
 			{
 				this->curr_ = this->curr_->prev_;
-			}
-			else
-			{
-				if (this->myList_)
-				{
-					this->curr_ = this->myList_->back_;
-				}
+			} else {
+				this->curr_ = this->myList->back_;
 			}
 			return *this;
 		}
@@ -123,13 +111,8 @@ public:
 			if (this->curr_)
 			{
 				this->curr_ = this->curr_->prev_;
-			}
-			else
-			{
-				if (this->myList_)
-				{
-					this->curr_ = this->myList_->back_;
-				}
+			} else {
+				this->curr_ = this->myList->back_;
 			}
 			return old;
 		}
@@ -143,16 +126,23 @@ public:
 	};
 
 	const_iterator cbegin() const{
+		if (front_)
+		{
+			return const_iterator(front_, this);
+		}
 		return const_iterator();
 	}
 	iterator begin(){
+		if (front_){
+			return iterator(front_, this);
+		}
 		return iterator();
 	}
 	const_iterator cend() const{
-		return const_iterator();
+		return const_iterator(nullptr, this);
 	}
 	iterator end(){
-		return iterator();
+		return iterator(nullptr, this);
 	}
 };
 
@@ -213,59 +203,46 @@ public:
 	class const_iterator{
 		friend class Sentinel;
 	protected:
-		const Sentinel *myList_;
 		Node *curr_;
-		const_iterator(Node *n, const Sentinel *theList)
+		const_iterator(Node *n)
 		{
 			curr_ = n;
-			myList_ = theList;
 		}
 	public:
 		const_iterator(){
 			curr_ = nullptr;
-			myList_ = nullptr;
 		}
 		const_iterator& operator++(){
-			curr_ = curr_->next_;
+			if(curr_ && curr_->next_){
+				curr_ = curr_->next_;
+			}
 			return *this;
 		}
 		const_iterator operator++(int){
 			const_iterator old = *this;
-			curr_ = curr_->next_;
+			if(curr_ && curr_->next_){
+				curr_ = curr_->next_;
+			}
 			return old;
 		}
 		const_iterator& operator--(){
-			if (curr_)
+			if (curr_ && curr_->prev_)
 			{
 				curr_ = curr_->prev_;
-			}
-			else
-			{
-				if (myList_)
-				{
-					curr_ = myList_->back_;
-				}
 			}
 			return *this;
 		}
 		const_iterator operator--(int){
 			const_iterator old = *this;
-			if (curr_)
+			if (curr_ && curr_->prev_)
 			{
 				curr_ = curr_->prev_;
-			}
-			else
-			{
-				if (myList_)
-				{
-					curr_ = myList_->back_;
-				}
 			}
 			return old;
 		}
 		bool operator==(const_iterator rhs){
 			bool compares = false;
-			if (myList_ == rhs.myList_ && curr_ == rhs.curr_)
+			if (curr_ == rhs.curr_)
 			{
 				compares = true;
 			}
@@ -280,45 +257,35 @@ public:
 	};
 	class iterator:public const_iterator{
 	public:
-		iterator(){
-			this->myList_ = nullptr;
-			this->curr_ = nullptr;
+		iterator(Node *n = nullptr)
+		{
+			this->curr_ = n;
 		}
 		iterator& operator++(){
-			this->curr_ = this->curr_->next_;
+			if(this->curr_ && this->curr_->next_){
+				this->curr_ = this->curr_->next_;
+			}
 			return *this;
 		}
 		iterator operator++(int){
 			iterator old = *this;
-			this->curr_ = this->curr_->next_;
+			if(this->curr_ && this->curr_->next_){
+				this->curr_ = this->curr_->next_;
+			}
 			return old;
 		}
 		iterator& operator--(){
-			if (this->curr_)
+			if (this->curr_ && this->curr_->prev_)
 			{
 				this->curr_ = this->curr_->prev_;
-			}
-			else
-			{
-				if (this->myList_)
-				{
-					this->curr_ = this->myList_->back_;
-				}
 			}
 			return *this;
 		}
 		iterator operator--(int){
 			iterator old = *this;
-			if (this->curr_)
+			if (this->curr_ && this->curr_->prev_)
 			{
 				this->curr_ = this->curr_->prev_;
-			}
-			else
-			{
-				if (this->myList_)
-				{
-					this->curr_ = this->myList_->back_;
-				}
 			}
 			return old;
 		}
@@ -330,16 +297,24 @@ public:
 		}
 	};
 	const_iterator cbegin() const{
-		return const_iterator();
+		return const_iterator(front_->next_);
 	}
 	iterator begin(){
-		return iterator();
+		return iterator(front_->next_);
 	}
 	const_iterator cend() const{
+		if (back_)
+		{
+			return const_iterator(back_);
+		}
 		return const_iterator();
 	}
 
 	iterator end(){
+		if (back_)
+		{
+			return iterator(back_);
+		}
 		return iterator();
 	}
 };
