@@ -1,13 +1,19 @@
 # Lab 5 Reflection and Observations
 
-* name of team member 1
-* name of team member 2
-* name of team member 3
+* Armen Merzaian
+* Jacky Dai
 
 ## Simple sorts
 
-	* which algorithm did you find easiest to understand?
-	* which algorithm seemed to fastest for completing the sort?
+### which algorithm did you find easiest to understand?
+
+The easiest algorithm for me to understand is the Bubblestort. This is because the algorithm makes many small iterative changes to the array,
+which makes it extremely inefficient, however modelling it, and visually displaying the sort is simple to comprehend.
+	
+### which algorithm seemed to fastest for completing the sort?
+
+The fastest simple algorithm seemed to the insertion sort. However, after analyzing the Big-O of all three simple algorithms, it is 
+clear that mathematically they all perform in the same quadratic time complexity for a worst-case scenerio. Therefore they are all equally 		inefficient.  
 
 
 ## Merging Unsorted lists
@@ -27,8 +33,8 @@
 
 |Team member | Sorting time|
 |---|---|
-| Team member 1 |  |
-| Team member 2 |  |
+| Armen Merzaian |  |
+| Jacky Dai |  |
 | Team member 3 |  |
 
 What was fastest time?
